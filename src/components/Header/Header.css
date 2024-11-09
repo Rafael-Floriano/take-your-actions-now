@@ -1,0 +1,30 @@
+.header-conteiner {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 3vw;
+}
+
+.site-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
+
+.account-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
