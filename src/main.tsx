@@ -6,6 +6,7 @@ import Header from './components/Header/Header.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './components/Login/Login.tsx'
 import Home from './components/Home/Home.tsx'
+import Bookmark from './pages/Bookmark/Bookmark.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <ChakraProvider>
@@ -16,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
           <Routes>
             <Route path='/' element={<Login/>}> </Route>
             <Route path='/home' element={<Home/>}> </Route>
-            <Route path='/home' element={<Home/>}> </Route>
+            <Route path='/bookmark' element={<Bookmark/>}> </Route>
           </Routes>
         </BrowserRouter>
       </Flex>
