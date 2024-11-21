@@ -1,6 +1,7 @@
 import { Box, Button, Flex, FormControl, FormLabel, Input, WrapItem } from "@chakra-ui/react";
 import "./Login.css";
 import { redirect } from "react-router-dom";
+import login from "../../client/LoginGateway";
 
 const Login = () => {
 
@@ -23,7 +24,7 @@ const Login = () => {
                         <Input type='password' />
                     </Flex>
                     <Flex w='100%' justifyContent='center'>
-                        <Button colorScheme='purple' onClick={handleSubmit}>Entrar</Button>
+                        <Button colorScheme='purple' onClick={()=> login("rafael.floriano@gmail.com", "xDRx!v8I@7M[:G?VY,;|n\"W$ti#_2-#E2#nm,TQ>")}>Entrar</Button>
                     </Flex>
                 </Flex>
             </FormControl>
