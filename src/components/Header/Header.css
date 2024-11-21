@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
 .header-conteiner {
     width: 100%;
-    height: 5vh;
+    height: 8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,6 +17,15 @@
     gap: 3vw;
 }
 
+.conteiner-icon-with-title {
+    cursor: pointer;
+}
+
+.header-title {
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
 .site-actions {
     display: flex;
     flex-direction: row;
@@ -27,4 +38,10 @@
     flex-direction: row;
     align-items: center;
     gap: 2vw;
+}
+
+.button-conteiner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
