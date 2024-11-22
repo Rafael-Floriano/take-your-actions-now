@@ -34,7 +34,7 @@ const Header = () => {
                                     boxSize='100px'
                                     objectFit='cover'
                                     src='./src/logo.png'
-                                    alt='Dan Abramov'
+                                    alt='Logo do Take your actions Now'
                                 />
                                 <Text className="header-title">Take your actions Now</Text>
                             </Flex>
