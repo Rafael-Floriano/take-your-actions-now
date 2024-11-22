@@ -1,14 +1,28 @@
 import { Box, Button, Flex, FormControl, FormLabel, Input, WrapItem } from "@chakra-ui/react";
 import "./Login.css";
-import { redirect } from "react-router-dom";
-import login from "../../client/LoginGateway";
+import { redirect, useNavigate } from "react-router-dom";
+import login, { LoginResponse } from "../../client/LoginGateway";
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        redirect('/home');
+        login(email, password).then((result) => {
+            const response:LoginResponse | null = result;
+            if (response != null && response.token != null) {
+                window.localStorage.setItem('token', response.token);
+                navigate('/home');
+            }
+        }).catch((error) => {
+            console.log(error);
+            console.log("Deu Pau");
+        });
     }
+
+    const email:string = 'rafael.floriano@gmail.com';
+    const password:string = 'xDRx!v8I@7M[:G?VY,;|n\"W$ti#_2-#E2#nm,TQ>';
 
     return (
         <>
@@ -17,14 +31,14 @@ const Login = () => {
                 <Flex direction='column' gap='4vh'>
                     <Flex direction='column'>
                         <FormLabel>Email</FormLabel>
-                        <Input type='email' />
+                        <Input value={email} type='email' />
                     </Flex>
                     <Flex direction='column'>
                         <FormLabel>Senha</FormLabel>
-                        <Input type='password' />
+                        <Input value={password} type='password' />
                     </Flex>
                     <Flex w='100%' justifyContent='center'>
-                        <Button colorScheme='purple' onClick={()=> login("rafael.floriano@gmail.com", "xDRx!v8I@7M[:G?VY,;|n\"W$ti#_2-#E2#nm,TQ>")}>Entrar</Button>
+                        <Button colorScheme='purple' onClick={handleSubmit}>Entrar</Button>
                     </Flex>
                 </Flex>
             </FormControl>
