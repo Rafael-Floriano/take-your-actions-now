@@ -1,6 +1,6 @@
 import { Box, Button, Flex, FormControl, FormLabel, Input, WrapItem } from "@chakra-ui/react";
 import "./Login.css";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import login, { LoginResponse } from "../../client/LoginGateway";
 
 const Login = () => {

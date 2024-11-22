@@ -10,6 +10,9 @@ const Header = () => {
     const navigate = useNavigate()
 
     const routerChanger = (path:string) => {
+        if (path === '/') {
+            window.localStorage.removeItem('token');
+        }
         navigate(path);
     }
 
