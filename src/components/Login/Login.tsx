@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormLabel, Input, WrapItem } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Image, Input, Text, WrapItem } from "@chakra-ui/react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import login, { LoginResponse } from "../../client/LoginGateway";
@@ -26,23 +26,34 @@ const Login = () => {
 
     return (
         <>
-        <Box w='28vw' h='42vh' borderWidth='1px' borderRadius='lg' p={4} flexDirection='column' justifyContent='center'>
+        <Flex w='28vw' h='46vh' borderWidth='1px' borderRadius='lg' p={9} flexDirection='row' justifyContent='center' gap='10vw'>
             <FormControl>
-                <Flex direction='column' gap='4vh'>
-                    <Flex direction='column'>
-                        <FormLabel>Email</FormLabel>
-                        <Input value={email} type='email' />
+                <Flex flexDirection='column' gap='2vh' alignItems='center'>
+                    <Flex className="conteiner-icon-with-title" flexDirection='row' gap='.1vw' alignItems='center'>
+                        <Image
+                            boxSize='80px'
+                            objectFit='cover'
+                            src='./src/logo.png'
+                            alt='Logo do Take your actions Now'
+                            />
+                            <Text className="header-title">Take your actions Now</Text>
                     </Flex>
-                    <Flex direction='column'>
-                        <FormLabel>Senha</FormLabel>
-                        <Input value={password} type='password' />
-                    </Flex>
-                    <Flex w='100%' justifyContent='center'>
-                        <Button colorScheme='purple' onClick={handleSubmit}>Entrar</Button>
+                    <Flex direction='column' gap='4vh' w='100%'>
+                        <Flex direction='column'>
+                            <FormLabel>Email</FormLabel>
+                            <Input value={email} type='email' />
+                        </Flex>
+                        <Flex direction='column'>
+                            <FormLabel>Senha</FormLabel>
+                            <Input value={password} type='password' />
+                        </Flex>
+                        <Flex w='100%' justifyContent='center'>
+                            <Button colorScheme='purple' onClick={handleSubmit}>Entrar</Button>
+                        </Flex>
                     </Flex>
                 </Flex>
             </FormControl>
-        </Box>
+        </Flex>
         </>
     )
 }
