@@ -9,6 +9,8 @@ const findActionBySymbol = async (symbol: string):Promise<StockData | null> => {
                 Authorization: `Bearer ${token}`,
             },
         });
+        console.log("findActionBySymbol");
+        console.log(response.data as StockData);
         return response.data as StockData;
     } catch (errorMessage:any) {
         console.log(errorMessage);
