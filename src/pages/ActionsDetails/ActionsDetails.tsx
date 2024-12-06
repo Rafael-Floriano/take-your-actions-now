@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Heading,
@@ -10,77 +10,80 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  StatArrow,
   Divider,
 } from '@chakra-ui/react';
 import ActionChart from '../../components/ActionChart/ActionChart';
 import { useParams } from 'react-router-dom';
+import { StockData } from '../../client/PaginationGateway';
+import findActionBySymbol from '../../client/FindActionGateway';
 
 const ActionsDetails = () => {
   const { symbol } = useParams();
+  const [actionData, setActionData] = useState<StockData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          if (symbol) {
+              setLoading(true);
+              const data = await findActionBySymbol(symbol);
+              setActionData(data);
+              setLoading(false);
+          }
+      };
+      fetchData();
+  }, [symbol]);
+  
 
   return (
     <Box p={8} minH="100vh" minW="70vw">
-      <Flex justify="space-between" align="center" mb={8}>
-        <HStack spacing={4}>
-          <Box
-            bg="yellow.400"
-            w="40px"
-            h="40px"
-            borderRadius="md"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Heading size="md" color="white">
-              BR
-            </Heading>
-          </Box>
-          <Heading size="lg">PETR4</Heading>
-        </HStack>
-        <Text fontSize="sm" color="gray.600">
-          Petroleo Brasileiro S.A. Petrobras
-        </Text>
-      </Flex>
+        <Flex justify="space-between" align="center" mb={8}>
+            <HStack spacing={4}>
+                <Box
+                    bg="yellow.400"
+                    w="40px"
+                    h="40px"
+                    borderRadius="md"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    <Heading size="md" color="white">
+                        {actionData?.currency}
+                    </Heading>
+                </Box>
+                <Heading size="lg">{actionData?.symbol}</Heading>
+            </HStack>
+            <Text fontSize="sm" color="gray.600">
+                {actionData?.longName}
+            </Text>
+        </Flex>
 
-      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} mb={8}>
-        <Stat>
-          <StatLabel>Cotação</StatLabel>
-          <StatNumber>R$ 39,64</StatNumber>
-        </Stat>
-        <Stat>
-          <StatLabel>Variação (12M)</StatLabel>
-          <StatNumber>
-            33,63% <StatArrow type="increase" />
-          </StatNumber>
-        </Stat>
-        <Stat>
-          <StatLabel>P/L</StatLabel>
-          <StatNumber>6,11</StatNumber>
-        </Stat>
-        <Stat>
-          <StatLabel>P/VP</StatLabel>
-          <StatNumber>1,31</StatNumber>
-        </Stat>
-        <Stat>
-          <StatLabel>DY</StatLabel>
-          <StatNumber>12,47%</StatNumber>
-        </Stat>
-      </Stack>
+        <Stack direction={{ base: 'column', md: 'row' }} spacing={8} mb={8}>
+            <Stat>
+                <StatLabel>Cotação</StatLabel>
+                <StatNumber>R$ {actionData?.regularMarketPrice.toFixed(2)}</StatNumber>
+            </Stat>
+            <Stat>
+                <StatLabel>P/L</StatLabel>
+                <StatNumber>{actionData?.priceEarnings?.toFixed(2) || 'N/A'}</StatNumber>
+            </Stat>
+            <Stat>
+                <StatLabel>P/VP</StatLabel>
+                <StatNumber>{actionData?.marketCap ? (actionData?.marketCap / actionData?.regularMarketPrice).toFixed(2) : 'N/A'}</StatNumber>
+            </Stat>
+        </Stack>
 
-      <Divider mb={8} />
+        <Divider mb={8} />
 
-      <VStack align="stretch" spacing={4}>
-        <Box h="600px" borderRadius="md">
-            <ActionChart/>
-        </Box>
-
-        <Text textAlign="center" fontSize="sm" color="gray.500">
-          Se você tivesse investido R$ 1.000,00 há 30 dias, hoje você teria: R$ 1.122,35*
-        </Text>
-      </VStack>
+        <VStack align="stretch" spacing={4}>
+            <Box h="600px" borderRadius="md">
+                <ActionChart />
+            </Box>
+        </VStack>
     </Box>
-  );
+);
+
 };
 
 export default ActionsDetails;
