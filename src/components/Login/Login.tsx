@@ -2,6 +2,7 @@ import { Box, Button, Flex, FormControl, FormLabel, Image, Input, Text, WrapItem
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import login, { LoginResponse } from "../../client/LoginGateway";
+import saveIdentifiers from "../../service/LocalStorageService";
 
 const Login = () => {
 
@@ -12,7 +13,7 @@ const Login = () => {
         login(email, password).then((result) => {
             const response:LoginResponse | null = result;
             if (response != null && response.token != null) {
-                window.localStorage.setItem('token', response.token);
+                saveIdentifiers(response.token);
                 navigate('/home');
             }
         }).catch((error) => {
