@@ -1,6 +1,6 @@
 # Front-End - Sistema de Ações 📊
 
-Este repositório contém o front-end de um sistema para visualização e acompanhamento de ações da bolsa de valores. O projeto utiliza **React.js** com **Chakra UI** para estilização, proporcionando uma interface moderna e responsiva.
+Este repositório contém o front-end de um sistema para visualização e acompanhamento de ações da bolsa de valores. O projeto utiliza **React** com **Chakra UI** para estilização, proporcionando uma interface moderna e responsiva.
 
 ---
 
