@@ -9,4 +9,8 @@ const saveIdentifiers = (token:String)=> {
     window.localStorage.setItem('userID', getUserID(<string>token));
 }
 
+export const getUserIDInStorage = ():string|null => {
+    return window.localStorage.getItem('userID');
+} 
+
 export default saveIdentifiers;
