@@ -1,7 +1,14 @@
 import React from 'react';
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const ActionCard = ({ image, name, value }) => {
+
+    const navigate = useNavigate()
+    const handleDetailsClick = () => {
+        navigate(`/actionsDetails/${name}`);
+    };
+
     return (
         <Card maxW="sm">
             <CardBody>
@@ -20,7 +27,7 @@ const ActionCard = ({ image, name, value }) => {
             <Divider />
             <CardFooter>
                 <ButtonGroup spacing="2">
-                    <Button variant="solid" colorScheme="blue">
+                    <Button variant="solid" colorScheme="blue" onClick={handleDetailsClick}>
                         Detalhes
                     </Button>
                     <Button variant="ghost" colorScheme="blue">
