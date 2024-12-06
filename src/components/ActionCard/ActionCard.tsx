@@ -1,12 +1,18 @@
 import React from 'react';
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, ButtonGroup, Button } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { saveAction } from '../../service/ActionService';
 
 const ActionCard = ({ image, name, value }) => {
 
     const navigate = useNavigate()
+    
     const handleDetailsClick = () => {
         navigate(`/actionsDetails/${name}`);
+    };
+
+    const handleSaveAction = () => {
+        saveAction(name);
     };
 
     return (
@@ -30,7 +36,7 @@ const ActionCard = ({ image, name, value }) => {
                     <Button variant="solid" colorScheme="blue" onClick={handleDetailsClick}>
                         Detalhes
                     </Button>
-                    <Button variant="ghost" colorScheme="blue">
+                    <Button variant="ghost" colorScheme="blue" onClick={handleSaveAction}>
                         Adicionar aos favoritos
                     </Button>
                 </ButtonGroup>
