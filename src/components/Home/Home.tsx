@@ -6,7 +6,7 @@ import pagination, { StockData } from "../../client/PaginationGateway";
 const Home = () => {
     const [data, setData] = useState<StockData[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [resultsByPage] = useState(4);
+    const [resultsByPage] = useState(8);
     const [isLoading, setIsLoading] = useState(false); 
 
     const fetchData = async (page: number) => {
@@ -39,7 +39,7 @@ const Home = () => {
                         ) : (
                             <Flex flexDirection='row' gap='1vw' wrap="wrap">
                                 {data.map((item, index) => (
-                                    <ActionCard key={index} data={item} />
+                                    <ActionCard key={index} data={item} image={item.logourl} value={item.regularMarketPrice} name={item.symbol} />
                                 ))}
                             </Flex>
                         )}
